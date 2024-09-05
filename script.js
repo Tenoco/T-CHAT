@@ -6,22 +6,22 @@ const joinChatButton = document.getElementById('join-chat');
 const userSection = document.getElementById('user-section');
 const chatContainer = document.getElementById('chat-container');
 const serverStatus = document.getElementById('server-status');
+const SERVER_URL = 'http://10.43.116.38:8000'; // Update to your server's IP
 
 // Function to display a message in the chat
 function displayMessage(message, isSentByUser) {
     const messageElement = document.createElement('div');
-    messageElement.className = `chat-bubble ${isSentByUser ? 'user' : 'other'}`; // Assign class based on sender
+    messageElement.className = `chat-bubble ${isSentByUser ? 'user' : 'other'}`;
     messageElement.textContent = message;
 
-    // Create and append timestamp
     const timestamp = document.createElement('span');
     timestamp.className = 'timestamp';
     const now = new Date();
-    timestamp.textContent = `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`; // Format time
+    timestamp.textContent = `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
     messageElement.appendChild(timestamp);
 
     chatMessages.appendChild(messageElement);
-    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
 // Function to send a message
@@ -35,45 +35,27 @@ function sendMessage() {
 
         console.log('Sending message:', data);
 
-        // Check if fetch is supported
-        if (window.fetch) {
-            fetch('http://10.104.224.118:8000/upload', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                displayMessage(`${username}: ${message}`, true); // Pass true for user's message
-                chatInput.value = '';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alertServerStatus(false); // Alert user of server issue
-            });
-        } else {
-            // Fallback to XMLHttpRequest
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://10.104.224.118:8000/upload', true);
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    displayMessage(`${username}: ${message}`, true); // Pass true for user's message
-                    chatInput.value = '';
-                } else if (xhr.readyState === 4) {
-                    console.error('Error:', xhr.statusText);
-                    alertServerStatus(false); // Alert user of server issue
-                }
-            };
-            xhr.send(JSON.stringify(data));
-        }
+        fetch(`${SERVER_URL}/upload`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayMessage(`${username}: ${message}`, true);
+            chatInput.value = '';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alertServerStatus(false);
+        });
     } else {
         alert('Please enter a message before sending.');
     }
@@ -85,30 +67,30 @@ function joinChat() {
     if (username) {
         userSection.style.display = 'none';
         chatContainer.style.display = 'block';
-        fetchMessages(); // Fetch previous messages
-        setInterval(fetchMessages, 3000); // Poll for new messages every 3 seconds
+        fetchMessages();
+        setInterval(fetchMessages, 3000);
     }
 }
 
 // Function to fetch messages
 function fetchMessages() {
-    fetch('http://10.104.224.118:8000/files/chat.txt')
+    fetch(`${SERVER_URL}/files/chat.txt`)
     .then(response => {
         if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
+            throw new Error('Network response was not ok: ' + response.statusText);
         }
         return response.json();
     })
     .then(messages => {
-        chatMessages.innerHTML = ''; // Clear previous messages
+        chatMessages.innerHTML = '';
         messages.forEach(message => {
-            const isSentByUser = message.startsWith(username); // Check if message is from the user
+            const isSentByUser = message.startsWith(username);
             displayMessage(message, isSentByUser);
         });
     })
     .catch(error => {
         console.error('Error:', error);
-        alertServerStatus(false); // Alert user of server issue
+        alertServerStatus(false);
     });
 }
 
@@ -125,23 +107,23 @@ function alertServerStatus(isActive) {
 
 // Function to check server status
 function checkServerStatus() {
-    fetch('http://10.104.224.118:8000/files/chat.txt') // Check a specific endpoint
+    fetch(`${SERVER_URL}/files/chat.txt`)
     .then(response => {
         if (response.ok) {
-            alertServerStatus(true); // Server is active
+            alertServerStatus(true);
         } else {
-            alertServerStatus(false); // Server is inactive
+            alertServerStatus(false);
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alertServerStatus(false); // Server is inactive
+        alertServerStatus(false);
     });
 }
 
 // Initial server status check
 checkServerStatus();
-setInterval(checkServerStatus, 5000); // Check server status every 5 seconds
+setInterval(checkServerStatus, 5000);
 
 // Event listeners
 joinChatButton.addEventListener('click', joinChat);
