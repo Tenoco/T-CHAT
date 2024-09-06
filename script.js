@@ -6,7 +6,7 @@ const joinChatButton = document.getElementById('join-chat');
 const userSection = document.getElementById('user-section');
 const chatContainer = document.getElementById('chat-container');
 const serverStatus = document.getElementById('server-status');
-const SERVER_URL = 'http://10.55.153.175:8000'; // Update to your server's IP
+const SERVER_URL = 'http://127.0.0.1:8000'; // Update to your server's IP
 
 // Function to display a message in the chat
 function displayMessage(message, isSentByUser) {
