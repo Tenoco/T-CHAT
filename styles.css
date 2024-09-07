@@ -7,19 +7,21 @@
 
 /* Body Styles */
 body {
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for body */
-    background-color: #1e1e1e; /* Dark background */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font */
+    background-color: #121212; /* Dark background */
     color: #ffffff; /* Light text color */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start; /* Align to the top */
     height: 100vh;
+    padding: 20px;
 }
 
 /* Heading Styles */
 h1, h2 {
     margin-bottom: 20px;
+    font-weight: bold; /* Bold weight for headings */
     font-family: 'Courier New', Courier, monospace; /* Monospace font for headings */
 }
 
@@ -32,49 +34,49 @@ h1, h2 {
 }
 
 /* Input Styles */
-input[type="text"] {
-    padding: 10px;
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    padding: 12px;
     margin: 5px 0;
-    border: 1px solid #444;
+    border: 1px solid #444; /* Darker border */
     border-radius: 5px;
-    background-color: #333;
-    color: #ffffff;
+    background-color: #222; /* Dark background for inputs */
+    color: #ffffff; /* Light text color */
     width: 300px; /* Increased width */
     font-size: 16px;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for input */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for inputs */
 }
 
 /* Button Styles */
 button {
-    padding: 10px 15px;
+    padding: 12px 15px;
     margin: 5px 0;
     border: none;
     border-radius: 5px;
     background-color: #007bff; /* Primary button color */
     color: #ffffff;
     font-size: 16px;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for buttons */
     cursor: pointer;
     transition: background-color 0.3s;
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for buttons */
 }
 
-/* Button Hover Effect */
 button:hover {
     background-color: #0056b3; /* Darker shade on hover */
 }
 
-/* Chat Container Styles */
-#chat-container {
+/* App Container Styles */
+#app-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
     max-width: 800px; /* Increased max-width for better layout */
-    border: 1px solid #444;
     border-radius: 10px;
-    background-color: #2a2a2a; /* Darker background for chat */
+    background-color: #1e1e1e; /* Dark background for app */
     padding: 20px;
     height: 600px; /* Increased height for a taller chat box */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Darker shadow for depth */
 }
 
 /* Server Status Styles */
@@ -85,6 +87,7 @@ button:hover {
     font-weight: bold;
     border-radius: 5px;
     margin-bottom: 10px;
+    background-color: #333; /* Dark gray background */
 }
 
 .status.active {
@@ -100,10 +103,10 @@ button:hover {
 /* Chat Messages Styles */
 #chat-messages {
     width: 100%;
-    height: 500px; /* Increased height for more visible messages */
+    height: 400px; /* Adjusted height for visible messages */
     overflow-y: auto;
-    background-color: #1e1e1e; /* Same as body */
-    border: 1px solid #444;
+    background-color: #222; /* Dark background for messages */
+    border: 1px solid #444; /* Darker border */
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
@@ -111,54 +114,86 @@ button:hover {
     flex-direction: column;
 }
 
-/* Chat Bubble Styles */
-.chat-bubble {
-    display: inline-block;
+/* Chat Message Styles */
+.chat-message {
     padding: 10px;
-    border-radius: 20px;
-    margin-bottom: 15px; /* Increased margin for gaps between bubbles */
-    max-width: 70%;
-    word-wrap: break-word;
-    position: relative; /* For positioning the timestamp */
-}
-
-/* User's Chat Bubble */
-.chat-bubble.user {
-    background-color: #007bff; /* Primary button color */
-    color: #ffffff;
-    align-self: flex-end; /* Align to the right */
-}
-
-/* Other User's Chat Bubble */
-.chat-bubble.other {
-    background-color: #444; /* Dark background for others */
-    color: #ffffff;
-    align-self: flex-start; /* Align to the left */
-}
-
-/* Timestamp Styles */
-.timestamp {
-    font-size: 12px;
-    color: #ccc;
-    position: absolute;
-    bottom: -15px; /* Position below the bubble */
-    right: 10px; /* Align to the right */
-}
-
-/* Chat Input Styles */
-#chat-input {
-    width: calc(100% - 100px); /* Adjust width for button */
-    padding: 10px;
-    border: 1px solid #444;
+    margin-bottom: 5px; /* Space between messages */
     border-radius: 5px;
-    background-color: #333;
-    color: #ffffff;
-    font-size: 16px;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for chat input */
+    background-color: #333; /* Background color for messages */
+    color: #ffffff; /* Light text color */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for messages */
+}
+
+/* Message Separator Styles */
+.message-separator {
+    height: 1px; /* Height of the separator */
+    background-color: #444; /* Darker color of the separator */
+    margin: 5px 0; /* Space around the separator */
+}
+
+/* Input Container Styles */
+.input-container {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Hide the input container in the account section */
+#account-section .input-container {
+    display: none; /* Hides the input container */
+}
+
+#chat-input {
+    flex: 1; /* Take the remaining space */
+    padding: 10px;
+    border: 1px solid #444; /* Darker border */
+    border-radius: 5px;
+    background-color: #222; /* Dark background for input */
+    color: #ffffff; /* Light text color */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for input */
 }
 
 /* Chat Send Button Styles */
 #chat-send {
     width: 80px;
     font-family: 'Courier New', Courier, monospace; /* Monospace font for send button */
+}
+
+/* Tab Section Styles */
+.tab-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background-color: #444; /* Dark background for tab buttons */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex: 1; /* Allow buttons to take equal space */
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for tab buttons */
+}
+
+.tab-button.active {
+    background-color: #2a2a2a; /* Darker background for active tab */
+}
+
+.tab-button:hover {
+    background-color: #555; /* Darker shade on hover */
+}
+
+/* Account Section Styles */
+#account-details {
+    margin-bottom: 10px;
+}
+
+#edit-account-form input {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace; /* Monospace font for edit account input */
 }

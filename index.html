@@ -5,21 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>T-CHAT</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.29.7.min.js"></script>
 </head>
 <body>
     <h1>Welcome to T-CHAT</h1>
     
-    <div id="user-section">
-        <input type="text" id="username" placeholder="Enter your username" required>
-        <button id="join-chat">Join Chat</button>
+    <div id="registration-section">
+        <h2>Register</h2>
+        <input type="text" id="reg-username" placeholder="Enter your username" required>
+        <input type="email" id="reg-email" placeholder="Enter your email" required>
+        <input type="password" id="reg-password" placeholder="Enter your password" required>
+        <button id="register-button">Register</button>
     </div>
 
-    <div id="chat-container" style="display: none;">
-        <h2>Chat Room</h2>
-        <div id="server-status" class="status active">Server Status: Active</div>
-        <div id="chat-messages"></div>
-        <input type="text" id="chat-input" placeholder="Type your message...">
-        <button id="chat-send">Send</button>
+    <div id="login-section">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button id="login-button">Login</button>
+    </div>
+
+    <div id="app-container" style="display: none;">
+        <div id="online-status">Users Online: <span id="online-count">0</span></div>
+        <!-- Tab section -->
+        <div class="tab-section">
+            <button class="tab-button active" id="chat-tab">Chat</button>
+            <button class="tab-button" id="account-tab">Account</button>
+        </div>
+
+        <!-- Chat section -->
+        <div id="chat-section" class="tab-content">
+            <h2>Chat Room</h2>
+            <div id="server-status" class="status active">Server Status: Active</div>
+            <div id="chat-messages"></div>
+            <div class="input-container">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="chat-send">Send</button>
+            </div>
+        </div>
+        
+        <!-- Account section -->
+        <div id="account-section" class="tab-content" style="display: none;">
+            <h3>Account Details</h3>
+            <div id="account-details">
+                <p>Username: <span id="account-username"></span></p>
+                <p>Email: <span id="account-email"></span></p>
+            </div>
+            <button id="edit-account">Edit Account</button>
+            <div id="edit-account-form" style="display: none;">
+                <input type="text" id="edit-username" placeholder="Enter new username">
+                <input type="password" id="edit-password" placeholder="Enter new password">
+                <button id="save-account">Save</button>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script> <!-- Link to your JavaScript file -->
