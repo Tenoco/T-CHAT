@@ -7,7 +7,7 @@ const loginSection = document.getElementById('login-section');
 const appContainer = document.getElementById('app-container');
 const serverStatus = document.getElementById('server-status');
 const onlineCount = document.getElementById('online-count');
-const SERVER_URL = 'http://127.0.0.1:8000'; // Update to your server's IP
+const SERVER_URL = 'http://100.121.94.40:8000'; // Update to your server's IP
 
 // Tab section functionality
 const chatTab = document.getElementById('chat-tab');
