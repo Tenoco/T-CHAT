@@ -7,30 +7,47 @@
 
 /* Body Styles */
 body {
-    font-family: 'Courier New', Courier, monospace; /* Monospace font */
-    background-color: #121212; /* Dark background */
-    color: #ffffff; /* Light text color */
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #121212;
+    color: #1e90ff;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start; /* Align to the top */
-    height: 100vh;
+    min-height: 100vh;
     padding: 20px;
 }
 
-/* Heading Styles */
-h1, h2 {
-    margin-bottom: 20px;
-    font-weight: bold; /* Bold weight for headings */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for headings */
+.container {
+    width: 100%;
+    max-width: 800px;
 }
 
-/* User Section Styles */
-#user-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 30px;
+/* Heading Styles */
+h1, h2, h3 {
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #1e90ff;
+    text-align: center;
+}
+
+/* Link Styles */
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+/* Login Section Styles */
+#login-section {
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#login-section input, #login-section button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 /* Input Styles */
@@ -38,48 +55,88 @@ input[type="text"],
 input[type="email"],
 input[type="password"] {
     padding: 12px;
-    margin: 5px 0;
-    border: 1px solid #444; /* Darker border */
+    border: 1px solid #444;
     border-radius: 5px;
-    background-color: #222; /* Dark background for inputs */
-    color: #ffffff; /* Light text color */
-    width: 300px; /* Increased width */
+    background-color: #222;
+    color: #1e90ff;
     font-size: 16px;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for inputs */
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* Button Styles */
 button {
     padding: 12px 15px;
-    margin: 5px 0;
     border: none;
     border-radius: 5px;
-    background-color: #007bff; /* Primary button color */
+    background-color: #007bff;
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for buttons */
+    font-family: 'Courier New', Courier, monospace;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3;
 }
 
 /* App Container Styles */
 #app-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 800px; /* Increased max-width for better layout */
+    background-color: #1e1e1e;
     border-radius: 10px;
-    background-color: #1e1e1e; /* Dark background for app */
     padding: 20px;
-    height: 600px; /* Increased height for a taller chat box */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Darker shadow for depth */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Server Status Styles */
+/* Online Status Styles */
+#online-status {
+    background-color: #2a2a2a;
+    color: #1e90ff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#online-count {
+    color: #00ffff;
+}
+
+/* Tab Section Styles */
+.tab-section {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background-color: #444;
+    color: #1e90ff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex: 1;
+    margin: 0 5px;
+}
+
+.tab-button.active {
+    background-color: #2a2a2a;
+}
+
+.tab-button:hover {
+    background-color: #555;
+}
+
+/* Chat Section Styles */
+#chat-section {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+}
+
 #server-status {
     width: 100%;
     padding: 10px;
@@ -87,113 +144,100 @@ button:hover {
     font-weight: bold;
     border-radius: 5px;
     margin-bottom: 10px;
-    background-color: #333; /* Dark gray background */
+    background-color: #333;
+    color: #1e90ff;
 }
 
 .status.active {
-    background-color: #28a745; /* Green color for active status */
+    background-color: #28a745;
     color: #ffffff;
 }
 
 .status.inactive {
-    background-color: #dc3545; /* Red color for inactive status */
+    background-color: #dc3545;
     color: #ffffff;
 }
 
-/* Chat Messages Styles */
 #chat-messages {
-    width: 100%;
-    height: 400px; /* Adjusted height for visible messages */
+    height: 300px;
     overflow-y: auto;
-    background-color: #222; /* Dark background for messages */
-    border: 1px solid #444; /* Darker border */
+    background-color: #2a2a2a;
+    border: 1px solid #444;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
 }
 
-/* Chat Message Styles */
 .chat-message {
     padding: 10px;
-    margin-bottom: 5px; /* Space between messages */
+    margin-bottom: 5px;
     border-radius: 5px;
-    background-color: #333; /* Background color for messages */
-    color: #ffffff; /* Light text color */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for messages */
+    background-color: #333;
+    color: #1e90ff;
 }
 
-/* Message Separator Styles */
 .message-separator {
-    height: 1px; /* Height of the separator */
-    background-color: #444; /* Darker color of the separator */
-    margin: 5px 0; /* Space around the separator */
+    height: 1px;
+    background-color: #444;
+    margin: 5px 0;
 }
 
-/* Input Container Styles */
 .input-container {
     display: flex;
-    width: 100%;
-    margin-top: 10px;
-}
-
-/* Hide the input container in the account section */
-#account-section .input-container {
-    display: none; /* Hides the input container */
+    gap: 10px;
 }
 
 #chat-input {
-    flex: 1; /* Take the remaining space */
-    padding: 10px;
-    border: 1px solid #444; /* Darker border */
-    border-radius: 5px;
-    background-color: #222; /* Dark background for input */
-    color: #ffffff; /* Light text color */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for input */
+    flex: 1;
 }
 
-/* Chat Send Button Styles */
 #chat-send {
     width: 80px;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for send button */
-}
-
-/* Tab Section Styles */
-.tab-section {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-}
-
-.tab-button {
-    padding: 10px 20px;
-    background-color: #444; /* Dark background for tab buttons */
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    flex: 1; /* Allow buttons to take equal space */
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for tab buttons */
-}
-
-.tab-button.active {
-    background-color: #2a2a2a; /* Darker background for active tab */
-}
-
-.tab-button:hover {
-    background-color: #555; /* Darker shade on hover */
 }
 
 /* Account Section Styles */
-#account-details {
-    margin-bottom: 10px;
+#account-section {
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
 }
 
-#edit-account-form input {
-    display: block;
+#account-details p {
     margin-bottom: 10px;
-    font-family: 'Courier New', Courier, monospace; /* Monospace font for edit account input */
+    padding: 5px 0;
+    border-bottom: 1px solid #444;
+}
+
+#account-details p:last-child {
+    border-bottom: none;
+}
+
+.account-info-label {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.account-info-value {
+    color: #00ffff;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    #chat-messages {
+        height: 250px;
+    }
+
+    .input-container {
+        flex-direction: column;
+    }
+
+    #chat-send {
+        width: 100%;
+    }
 }
